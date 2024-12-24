@@ -83,10 +83,20 @@ public class Class1
             return attributes.First().Description;
         }
 
+        
+
         return value.ToString();
     }
-    
-    
-    
-    
+
+    [Flags]
+    public enum AccessRight
+    {
+        None = 0,
+        Read = 0b_001,
+        Write = 0b_010,
+        Delete = 0b_100,
+        User = AccessRight.Read | AccessRight.Write,
+        Admin = AccessRight.Read | AccessRight.Write | AccessRight.Delete,
+        Guest = AccessRight.Read
+    }
 }
