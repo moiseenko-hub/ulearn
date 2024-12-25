@@ -72,6 +72,27 @@ public class Arrays
 
         return true;
     }
+    /* Помогите Васе написать метод, который принимает массив int[], возводит все его элементы в заданную степень и возвращает массив с результатом этой операции.
+       
+       Исходный массив при этом должен остаться неизменным. */
+    public static int[] GetPoweredArray(int[] arr, int power)
+    {
+        int[] new_arr = new int[arr.Length];
+        for (var i = 0; i < new_arr.Length; i++)
+        {
+            var temp = arr[i];
+            var result = 1;
+            for (var j = 1; j <= power; j++)
+            {
+                result = result * temp;
+            }
+
+            new_arr[i] = result;
+        }
+        return new_arr;
+    }
+    
+    
 
     
 }
