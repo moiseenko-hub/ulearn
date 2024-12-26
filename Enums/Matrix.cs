@@ -1,3 +1,5 @@
+using System.Security.Cryptography;
+
 namespace Enums;
 
 public class Matrix
@@ -42,11 +44,61 @@ public class Matrix
         {
             for (int j = 0; j < matrix.GetLength(1); j++)
             {
-                Console.Write(matrix[i,j]);
+                Console.Write(matrix[i,j] + " ");
+
             }
             Console.WriteLine();
         }
         Console.WriteLine();
     }
+
+    public static int[] GetPositiveAndNegative()
+    {
+        var positive = 0;
+        var negative = 0;
+        for (var i = 0; i < matrix.GetLength(0); i++)
+        {
+            for (int j = 0; j < matrix.GetLength(1); j++)
+            {
+                if (matrix[i, j] < 0)
+                    negative++;
+                else
+                    positive++;
+            }
+        }
+
+        return new int[] { positive, negative };
+
+    }
+
+    public static void SortLines(bool Ascending)
+    {
+        for (var row = 0; row < matrix.GetLength(0); row++)
+        {
+            for (var col = 0; col < matrix.GetLength(1); col++)
+            {
+                for (var j = 0; j < matrix.GetLength(1) - 1; j++)
+                {
+                    if (Ascending)
+                    {
+                        if (matrix[row, j] < matrix[row, j + 1])
+                        {
+                            (matrix[row, j], matrix[row, j + 1]) = (matrix[row, j + 1], matrix[row, j]);
+                        }
+                    }
+                    else
+                    {
+                        if (matrix[row, j] > matrix[row, j + 1])
+                        {
+                            (matrix[row, j], matrix[row, j + 1]) = (matrix[row, j + 1], matrix[row, j]);
+                        }
+                    }
+                    
+                }
+            }
+        }
+    }
+
+    
 
 }
