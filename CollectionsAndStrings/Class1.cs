@@ -1,4 +1,6 @@
 ﻿using System.Runtime.InteropServices.JavaScript;
+using System.Text;
+using System.Text.RegularExpressions;
 
 namespace CollectionsAndStrings;
 
@@ -43,5 +45,48 @@ public class Class1
             }
         }
         return dictionary;
+    }
+    
+    /*
+     * Вчера Вася узнал про удивительный закон Бенфорда и хочет проверить его действие. Для этого он взял текст с актуальными данными по самым высоким зданиям в мире и хочет получить статистику: сколько раз каждая цифра стоит на месте старшего разряда в числах из его текста.
+       
+       Метод GetBenfordStatistics должен вернуть массив чисел, в котором на i-ой позиции находится статистика для цифры i.
+     */
+    
+    public static int[] GetBenfordStatistics(string text)
+    {
+        var statistics = new int[10];
+        for (int i = 0; i < text.Length; i++)
+        {
+            if (Char.IsDigit(text[i]) && (i == 0 || !Char.IsDigit(text[i-1])))
+                statistics[text[i] - '0']++;
+        }
+        return statistics;
+    }
+    
+    public static string ReplaceIncorrectSeparators(string text)
+    {
+        string[] arrayToSplit = text.Split(new char[] { ' ', ':', ';', '-',',' }, StringSplitOptions.RemoveEmptyEntries);
+        return String.Join('\t', arrayToSplit);
+    }
+    
+    public static string ApplyCommands(string[] commands)
+    {
+        var builder = new StringBuilder();
+        
+        foreach (var str in commands)
+        {
+            int firstSpaceIndex = str.IndexOf(' ');
+            if (str.StartsWith("push"))
+            {
+                builder.Append(str.Substring(firstSpaceIndex+1));
+            }
+            else if(str.StartsWith("pop"))
+            {
+                int removedSymbols = Convert.ToInt32(str.Substring(firstSpaceIndex+1));
+                builder.Remove(builder.Length - removedSymbols, removedSymbols);
+            }
+        }
+        return builder.ToString();
     }
 }
