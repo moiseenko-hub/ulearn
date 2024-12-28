@@ -13,6 +13,8 @@ class Program
         //Matrix.Launch();
         //Matrix.SortLines(false);
         //Matrix.Print();
+        
+        /*
         var contacts = new List<string>
         {
             ":dimka212@gmail.com",
@@ -36,6 +38,23 @@ class Program
                 Console.WriteLine(item);
             }
         }
+        */
+
+        //Console.WriteLine(Class1.ReplaceIncorrectSeparators("Германия - 83149300 1.10.2019 1.06%"));
+
+        string[] commands = new string[]
+        {
+            "push Привет! Это снова я! Пока!",
+            "pop 5",
+            "push Как твои успехи? Плохо?",
+            "push qwertyuiop",
+            "push 1234567890",
+            "pop 26"
+        };
+
+        Console.WriteLine(Class1.ApplyCommands(commands));
+
+
 
     }
     
